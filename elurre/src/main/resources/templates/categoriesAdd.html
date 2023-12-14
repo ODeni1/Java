@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Categories Add</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/admin}">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</nav>
+
+<div class="container-categories-products" id="container-small-box">
+    <div>
+        <div>
+            <form th:action="@{/admin/categories/add}" method="post" th:object="${category}">
+                <input type="hidden" name="id"  th:field="*{id}">
+                <div>
+                    <label for="name">New Category</label>
+                    <input type="text" class="input-form" required th:field="*{name}" name="name" id="name" placeholder="Enter name">
+                </div>
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

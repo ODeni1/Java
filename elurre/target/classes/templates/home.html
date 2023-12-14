@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/admin}">Admin</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</nav>
+
+<div class="welcome-text">
+    <h1>Elurre Clothing Brand</h1>
+    <p>- a revolution in retail -</p>
+</div>
+
+<div class="container-admin">
+    <div class="container-body-admin">
+        <h4 class="container-title-admin">Admin</h4>
+        <p class="container-text-admin">Manage your data as an admin here.</p>
+        <a th:href="@{/admin}" class="btn-primary">Manage</a>
+    </div>
+
+    <div class="container-body-admin">
+        <h4 class="container-title-admin">Shop</h4>
+        <p class="container-text-admin">Go and find the best articles for you.</p>
+        <a th:href="@{/shop}" class="btn-primary">Shop now</a>
+    </div>
+</div>
+
+</body>
+</html>

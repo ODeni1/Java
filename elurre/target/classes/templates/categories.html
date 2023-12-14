@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Categories</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/admin}">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</nav>
+
+<div class="container-categories-products">
+    <a th:href="@{/admin/categories/add}" style="margin: 20px 0" class="btn-primary">Add Category</a>
+    <table class="table-categories-products">
+        <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Category</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category, iStat : ${categories}">
+            <th scope="row" th:text="${iStat.index + 1}">1</th>
+            <td th:text="${category.name}"></td>
+            <td><a href="" th:href="@{/admin/categories/delete/{id}(id=${category.id})}" class="btn-primary">Delete</a></td>
+            <td><a href="" th:href="@{/admin/categories/update/{id}(id=${category.id})}" class="btn-primary">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

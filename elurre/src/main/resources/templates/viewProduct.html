@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/css/style.css">
+   
+</head>
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/logout}">Logout</a>
+        <a th:href="@{/cart}">Cart</a>
+        <span th:text="${cartCount}">0</span>
+    </div>
+</nav>
+
+<div class="product-container-viewProduct">
+
+<div class="product-image-shop">
+        <img height="350px" width="280px" src="" th:src="@{${'/productImages/' + product.image}}" alt="Product Image">
+    </div>
+    <div class="product-details-shop">
+        <h2 th:text="${product.name}"></h2>
+        <p th:text="${product.category.name}"></p>
+        <h2>RON <span th:text="${product.price}"></span></h2>
+        <p th:text="${product.description}"></p>
+        <form th:action="@{/addToCart/{id}(id=${product.id})}" method="post" th:object="${productDTO}" enctype="multipart/form-data">
+        <div class="productsADD">
+                    <label class="container-productsADD-label" for="size">Size</label>
+                    <select class="input-form" required th:field="*{size}" name="size" id="size"
+                           placeholder="Size">
+                        <option value="XS">XS</option>
+						<option value="S">S</option>
+						<option value="M">M</option>
+						<option value="L">L</option>
+						<option value="XL">XL</option></select>
+                </div>
+                <div class="productsADD">
+                    <label class="container-productsADD-label" for="quantity">Quantity</label>
+                    <input type="number" class="input-form" required th:field="*{quantity}" name="quantity" id="quantity"
+                           placeholder="Quantity">
+                </div>
+                </form>
+        <a th:href="@{/addToCart/{id}(id = ${product.id})}" class="btn-primary">Add to cart</a>
+    </div>
+
+</div>
+</body>
+</html>

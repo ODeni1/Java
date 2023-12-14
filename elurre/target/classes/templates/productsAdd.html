@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products Add</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/admin}">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</nav>
+
+<div class="container-categories-products" id="container-small-box">
+ <h2>Add a new Product</h2>
+    <form th:action="@{/admin/products/add}" method="post" th:object="${productDTO}" enctype="multipart/form-data">
+        <div class="productsADD">
+            <div class="productsADD">
+                <input type="hidden" name="id" th:field="*{id}">
+                <div>
+                    <label class="container-productsADD-label" for="name">Name</label>
+                    <input type="text" class="input-form" required th:field="*{name}" name="name" id="name"
+                           placeholder="Enter name">
+
+                </div>
+                
+                <div class="productsADD">
+                    <label class="container-productsADD-label" for="category">Category</label>
+                    <select class="input-form" th:field="*{categoryId}" id="category" name="category">
+                        <option th:each="category :${categories}"
+                                th:value="${category.id}"
+                                th:text="${category.name}">
+                    </select>
+                </div>
+                
+                <div class="productsADD">
+                    <label class="container-productsADD-label" for="price">Price</label>
+                    <input type="number" class="input-form" required th:field="*{price}" name="price" id="price"
+                           placeholder="Price">
+                </div >
+                
+                
+                <div class="productsADD">
+                    <label class="container-productsADD-label" for="description">Description</label>
+                    <textarea class="input-form" rows="4" th:field="*{description}" name="description" id="description"></textarea>
+                </div>
+            
+            <div class="productsADD">
+                <p>Image</p>
+                <div>
+                    <input type="file"  class="input-form" name="productImage" accept="image/jpeg, image/jpg, image/png"  id="productImage"/>
+                    <label class="container-productsADD-label" for="productImage"></label>
+                </div>
+                
+                <div class="productsADD">
+                    <img src="#" height="120px" width="100px" th:src="@{${'/productImages/' + productDTO.image}}" style="margin-top: 20px" alt=" ">
+                </div>
+                <input type="hidden" name="img" th:value="${productDTO.image}">
+                <button type="submit" class="btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/admin}">Admin</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/login}">Login</a>
+    </div>
+</nav>
+
+<div class="welcome-text">
+    <h1>Welcome back, Admin!</h1>
+    <p>- manage your data like a pro -</p>
+</div>
+
+<div class="container-admin">
+    <div class="container-body-admin">
+        <h4 class="container-title-admin">Categories</h4>
+        <p class="container-text-admin">Manage all the categories here.</p>
+        <a th:href="@{/admin/categories}" class="btn-primary">Manage</a>
+    </div>
+
+    <div class="container-body-admin">
+        <h4 class="container-title-admin">Products</h4>
+        <p class="container-text-admin">Manage all the products here.</p>
+        <a th:href="@{/admin/products}" class="btn-primary">Manage</a>
+    </div>
+</div>
+
+</body>
+</html>

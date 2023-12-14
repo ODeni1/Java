@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Cart</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/logout}">Logout</a>
+        <a th:href="@{/cart}">Cart</a>
+        <span th:text="${cartCount}">0</span>
+    </div>
+</nav>
+
+<main>
+    <div class="cart-container">
+        <h5>Cart (<span th:text="${cartCount}">2</span> items)</h5>
+        <div class="product-list-cart" th:each="item, iStat : ${cart}">
+            <div class="product-item-cart">
+                <img class="cart-images" th:src="@{${'/productImages/' + item.image}}">
+                    <div>
+                        <h5 th:text="${item.name}"></h5>
+                        <p>Size: <span th:text="${item.size}"></span></p>
+                        <p>Quantity: <span th:text="${item.quantity}"></span></p>
+                        <p><span><strong>RON <span th:text="${item.price}"></span></strong></span></p>
+                        <a class="remove-item-cart btn-primary" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}" type="button">Remove item</a>
+                    </div>
+            </div>
+        </div>
+        <div class="total-amount-cart">
+            <h5>Total amount</h5>
+
+            <ul>
+                <li>
+                    Amount Payable: RON <span th:text="${total}"></span>
+                </li>
+                <li>
+                    Shipping: FREE
+                </li>
+            </ul>
+
+            <a th:href="@{/checkout}" class="btn-primary">Go to Checkout</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

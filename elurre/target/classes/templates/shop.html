@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<nav>
+    <img src="/images/elurre.jpg" alt="Logo">
+    <a class="logo-text">Elurre - Clothing Brand</a>
+    <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/logout}">Logout</a>
+        <a th:href="@{/cart}">Cart</a>
+        <span th:text="${cartCount}">0</span>
+    </div>
+</nav>
+<div class="container-categories-shop">
+    <div class="row-shop">
+        <div class="categories-shop">
+            <h4>Categories</h4>
+            <ul>
+                <li class="list-shop">All Products</li>
+                <li th:each="category, iStat : ${categories}" class="list-shop" th:text="${category.name}"></li>
+            </ul>
+        </div>
+        <div class="products-shop">
+            <div class="product-item-shop" th:each="product : ${products}">
+                <div>
+                    <div>
+                        <img class="product-image-shop" th:src="@{${'/productImages/' + product.image}}" th:alt="${product.name}">
+                    </div>
+                    <div class="product-details-shop">
+                        <div>
+                            <h5 th:text="${product.name}"></h5>
+                            <h4>RON <span th:text="${product.price}"></span></h4>
+                            <p th:text="${product.description}"></p>
+                            <a th:href="@{/shop/viewproduct/{id}(id=${product.id})}" class="btn btn-primary">View Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
